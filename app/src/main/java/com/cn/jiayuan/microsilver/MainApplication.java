@@ -8,7 +8,7 @@ import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 
 
-public class JYApplication extends Application {
+public class MainApplication extends Application {
 
     @Override
     public void onCreate() {
