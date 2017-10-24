@@ -22,6 +22,8 @@ public class MainApplication extends Application {
      * init Logger
      */
     private void initLogger() {
+
+//        Logger.addLogAdapter(new AndroidLogAdapter());
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(true)  // (Optional) Whether to show thread info or not. Default true
                 .methodCount(2)         // (Optional) How many method line to show. Default 2

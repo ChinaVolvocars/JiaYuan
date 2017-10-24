@@ -54,7 +54,6 @@ public class RxAppCompatActivity extends AppCompatActivity implements LifecycleP
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lifecycleSubject.onNext(ActivityEvent.CREATE);
-        Logger.i(tag);
     }
 
     @Override
