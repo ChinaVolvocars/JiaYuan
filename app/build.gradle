@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
-apply plugin: "me.tatarka.retrolambda"
+//apply plugin: "me.tatarka.retrolambda"
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
 
 android {
     compileSdkVersion 26
@@ -12,15 +17,38 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
-        jackOptions {
-            enabled true
-        }
+
 
     }
+
+    signingConfigs {
+        debug {
+
+        }
+
+        release {
+
+        }
+    }
+
     buildTypes {
         release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "String", "api_host", "\"https://www.jiayuanbank.com\""
+            buildConfigField "String", "h5_host", "\"https://www.jiayuanbank.com\""
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug{
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "String", "api_host", "\"https://www.jiayuanbank.com\""
+            buildConfigField "String", "h5_host", "\"https://www.jiayuanbank.com\""
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
         }
     }
     lintOptions {
@@ -30,6 +58,8 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        android.compileOptions.sourceCompatibility 1.8
+        android.compileOptions.targetCompatibility 1.8
     }
 
     packagingOptions {
@@ -41,10 +71,12 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre7:1.1.51'
+
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -65,11 +97,14 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.1.3'
 
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 
-    compile 'com.squareup.okhttp3:okhttp:3.9.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+//    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+//    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
 
     compile 'com.trello.rxlifecycle2:rxlifecycle:2.2.0'
     compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.0'
@@ -86,5 +121,8 @@ dependencies {
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
 
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
 }

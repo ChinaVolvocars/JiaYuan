@@ -10,13 +10,27 @@ import com.orhanobut.logger.PrettyFormatStrategy;
 
 public class MainApplication extends Application {
 
+    private static  MainApplication instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        instance=this;
+
         initLogger();
 
 
     }
+
+    public static MainApplication instance() {
+        if (instance == null) {
+            instance = MainApplication.instance();
+        }
+        return instance;
+    }
+
+
 
     /**
      * init Logger
@@ -39,4 +53,7 @@ public class MainApplication extends Application {
             }
         });
     }
+
+
+
 }
