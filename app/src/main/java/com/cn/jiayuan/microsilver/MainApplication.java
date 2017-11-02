@@ -2,13 +2,15 @@ package com.cn.jiayuan.microsilver;
 
 import android.app.Application;
 
+import com.cn.jiayuan.microsilver.base.BaseActivity;
+import com.cn.jiayuan.microsilver.base.BaseApplication;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 
 
-public class MainApplication extends Application {
+public class MainApplication extends BaseApplication {
 
     private static  MainApplication instance;
 
@@ -37,12 +39,11 @@ public class MainApplication extends Application {
      */
     private void initLogger() {
 
-//        Logger.addLogAdapter(new AndroidLogAdapter());
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(true)  // (Optional) Whether to show thread info or not. Default true
                 .methodCount(2)         // (Optional) How many method line to show. Default 2
                 .methodOffset(5)        // (Optional) Hides internal method calls up to offset. Default 5
-                .tag("JiaYuan tag")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
+                .tag("JiaYuan")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
                 .build();
         //.logStrategy(customLog) (Optional) Changes the log strategy to print out. Default LogCat
 

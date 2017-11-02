@@ -1,10 +1,9 @@
 package com.cn.jiayuan.microsilver.services;
 
 
-import android.support.annotation.NonNull;
+import com.cn.jiayuan.microsilver.moudle.Enter;
 
 import io.reactivex.Observable;
-import retrofit2.Response;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -16,7 +15,7 @@ public interface ApiService {
 
 
     @POST("/login")
-    Observable<Enter> login( @Query("cellPhone") String cellPhone,
-                             @Query("password") String password);
+    Observable<Enter> login(@Query("cellPhone") String cellPhone,
+                            @Query("password") String password);
 
 }
